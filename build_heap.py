@@ -31,7 +31,7 @@ def main():
     input_text = input()
     if 'F' in input_text:
         input_file = input()
-        input_file = "test/" + input_file
+        input_file = "tests/" + input_file
         if 'a' not in input_file:
             try:
                 with open(input_file, "r") as f:
