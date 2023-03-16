@@ -9,8 +9,8 @@ def build_heap(data):
         return swaps
 
     def swap(child, parent):
-        swaps.append((child, parent))
-        data[child], data[parent] = data[parent], data[child]
+    swaps.append((parent, child))
+    data[child], data[parent] = data[parent], data[child]
 
     def HeapUp(m):
         if m == 0:
