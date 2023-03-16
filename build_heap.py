@@ -4,27 +4,25 @@ def build_heap(data):
     n = len(data)
     swaps = []
 
-    def heapify(i):
-        largest = i
-        left = 2*i + 1
-        right = 2*i + 2
+    if n == 0:
+        swaps.append(0)
+        return swaps
 
-        if left < n and data[left] > data[largest]:
-            largest = left
+    def swap(child, parent):
+        swaps.append((child, parent))
+        data[child], data[parent] = data[parent], data[child]
 
-        if right < n and data[right] > data[largest]:
-            largest = right
+    def HeapUp(m):
+        if m == 0:
+            return
+        if data[m] < data[(m-1)//2]:
+            swap(m, (m-1)//2)
+            HeapUp((m-1)//2)
 
-        if largest != i:
-            swaps.append((i, largest))
-            data[i], data[largest] = data[largest], data[i]
-            heapify(largest)
-
-    for i in range(n//2, -1, -1):
-        heapify(i)
+    for i in range(n-1, -1, -1):
+        HeapUp(i)
 
     return swaps
-
 
 def main():
     
@@ -38,7 +36,7 @@ def main():
                     n = int(f.readline())          
                     data = list(map(int, f.readline().split()))
 
-                    # checks if lenght of data is the same as the said lenght
+                    # checks if length of data is the same as the said length
                     assert len(data) == n
 
                     # calls function to assess the data 
@@ -61,7 +59,7 @@ def main():
         n = int(input())
         data = list(map(int, input().split()))
 
-        # checks if lenght of data is the same as the said lenght
+        # checks if length of data is the same as the said length
         assert len(data) == n
 
         # calls function to assess the data 
